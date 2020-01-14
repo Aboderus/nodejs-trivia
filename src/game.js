@@ -93,20 +93,9 @@ class Game {
   };
 
   wasCorrectlyAnswered() {
-    if (this.inPenaltyBox[this.currentPlayer]) {
-      if (this.isGettingOutOfPenaltyBox) {
-        console.log('Answer was correct!!!!');
-        this.purses[this.currentPlayer] += 1;
-        console.log(this.players[this.currentPlayer] + " now has " +
-          this.purses[this.currentPlayer] + " Gold Coins.");
-        const winner = this.didPlayerWin();
-        this.switchPlayer();
-        return winner;
-      }
-      else {
-        this.switchPlayer();
-        return true;
-      }
+    if (this.inPenaltyBox[this.currentPlayer] && !this.isGettingOutOfPenaltyBox) {
+      this.switchPlayer();
+      return true;
     }
     else {
       console.log("Answer was correct!!!!");
