@@ -26,7 +26,7 @@ class Game {
   };
 
   didPlayerWin() {
-    return !(this.purses[this.currentPlayer] == 6);
+    return !(this.purses[this.currentPlayer] === 6);
   };
 
   switchPlayer() {
@@ -130,7 +130,7 @@ do {
 
   game.roll(Math.floor(Math.random() * 6) + 1);
 
-  if (Math.floor(Math.random() * 10) == 7) {
+  if (Math.floor(Math.random() * 10) === 7) {
     notAWinner = game.wrongAnswer();
   } else {
     notAWinner = game.wasCorrectlyAnswered();
