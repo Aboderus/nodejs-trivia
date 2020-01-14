@@ -29,6 +29,13 @@ class Game {
     return !(this.purses[this.currentPlayer] == 6);
   };
 
+  switchPlayer() {
+    this.currentPlayer += 1;
+    if (this.currentPlayer === this.players.length) {
+      this.currentPlayer = 0;
+    };
+  };
+
   currentCategory() {
     return this.categories[this.places[this.currentPlayer] % 4];
   };
@@ -93,15 +100,11 @@ class Game {
         console.log(this.players[this.currentPlayer] + " now has " +
           this.purses[this.currentPlayer] + " Gold Coins.");
         const winner = this.didPlayerWin();
-        this.currentPlayer += 1;
-        if (this.currentPlayer == this.players.length)
-          this.currentPlayer = 0;
+        this.switchPlayer();
         return winner;
       }
       else {
-        this.currentPlayer += 1;
-        if (this.currentPlayer == this.players.length)
-          this.currentPlayer = 0;
+        this.switchPlayer();
         return true;
       }
     }
@@ -111,9 +114,7 @@ class Game {
       console.log(this.players[this.currentPlayer] + " now has " +
         this.purses[this.currentPlayer] + " Gold Coins.");
       const winner = this.didPlayerWin();
-      this.currentPlayer += 1;
-      if (this.currentPlayer == this.players.length)
-        this.currentPlayer = 0;
+      this.switchPlayer();
       return winner;
     }
   };
@@ -122,9 +123,7 @@ class Game {
     console.log('Question was incorrectly answered');
     console.log(this.players[this.currentPlayer] + " was sent to the penalty box");
     this.inPenaltyBox[this.currentPlayer] = true;
-    this.currentPlayer += 1;
-    if (this.currentPlayer == this.players.length)
-      this.currentPlayer = 0;
+    this.switchPlayer();
     return true;
   };
 
