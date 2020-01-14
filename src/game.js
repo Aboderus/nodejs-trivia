@@ -14,7 +14,7 @@ class Game {
     this.currentPlayer = 0;
     this.isGettingOutOfPenaltyBox = false;
 
-    for (var i = 0; i < 50; i++) {
+    for (let i = 0; i < 50; i++) {
       this.popQuestions.push("Pop Question " + i);
       this.scienceQuestions.push("Science Question " + i);
       this.sportsQuestions.push("Sports Question " + i);
@@ -105,7 +105,7 @@ class Game {
         this.purses[this.currentPlayer] += 1;
         console.log(this.players[this.currentPlayer] + " now has " +
           this.purses[this.currentPlayer] + " Gold Coins.");
-        var winner = this.didPlayerWin();
+        const winner = this.didPlayerWin();
         this.currentPlayer += 1;
         if (this.currentPlayer == this.players.length)
           this.currentPlayer = 0;
@@ -123,7 +123,7 @@ class Game {
       this.purses[this.currentPlayer] += 1;
       console.log(this.players[this.currentPlayer] + " now has " +
         this.purses[this.currentPlayer] + " Gold Coins.");
-      var winner = this.didPlayerWin();
+      const winner = this.didPlayerWin();
       this.currentPlayer += 1;
       if (this.currentPlayer == this.players.length)
         this.currentPlayer = 0;
@@ -141,9 +141,9 @@ class Game {
   };
 }
 
-var notAWinner = false;
+let notAWinner = false;
 
-var game = new Game();
+const game = new Game();
 
 game.add('Chet');
 game.add('Pat');
