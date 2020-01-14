@@ -40,7 +40,7 @@ class Game {
     return this.categories[this.places[this.currentPlayer] % 4];
   };
 
-  add(playerName) {
+  addPlayer(playerName) {
     this.players.push(playerName);
     const playerIndex = this.players.length - 1;
 
@@ -122,9 +122,9 @@ let notAWinner = false;
 
 const game = new Game();
 
-game.add('Chet');
-game.add('Pat');
-game.add('Sue');
+game.addPlayer('Chet');
+game.addPlayer('Pat');
+game.addPlayer('Sue');
 
 do {
 
