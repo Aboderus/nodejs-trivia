@@ -38,3 +38,19 @@ describe("takeTurn increments and resets places", function () {
     Should(game.places[game.currentPlayer]).equal(1);
   });
 });
+
+describe("Test addPlayer", function () {
+  const game = new Game();
+
+  it("Should add players and set correct player values.", function () {
+    const names = ["Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "eta"]
+    names.forEach((name, index) => {
+      game.addPlayer(name);
+      should(game.players[index]).equal(name);
+      should(game.places[index]).equal(0);
+      should(game.purses[index]).equal(0);
+      should(game.inPenaltyBox[index]).equal(false);
+    });
+    Should(game.players.length).equal(names.length);
+  });
+});
