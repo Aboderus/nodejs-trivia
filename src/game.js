@@ -74,6 +74,15 @@ class Game {
     if (this.currentCategory() == 'Rock')
       console.log(this.rockQuestions.shift());
   };
+  takeTurn(roll) {
+    this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+    if (this.places[this.currentPlayer] > 11) {
+      this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+    }
+    console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
+    console.log("The category is " + this.currentCategory());
+    this.askQuestion();
+  }
   roll(roll) {
     console.log(this.players[this.currentPlayer] + " is the current player");
     console.log("They have rolled a " + roll);
@@ -81,13 +90,7 @@ class Game {
       if (roll % 2 != 0) {
         this.isGettingOutOfPenaltyBox = true;
         console.log(this.players[this.currentPlayer] + " is getting out of the penalty box");
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-        if (this.places[this.currentPlayer] > 11) {
-          this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-        }
-        console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
-        console.log("The category is " + this.currentCategory());
-        this.askQuestion();
+        this.takeTurn(roll);
       }
       else {
         console.log(this.players[this.currentPlayer] + " is not getting out of the penalty box");
@@ -95,13 +98,7 @@ class Game {
       }
     }
     else {
-      this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-      if (this.places[this.currentPlayer] > 11) {
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-      }
-      console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
-      console.log("The category is " + this.currentCategory());
-      this.askQuestion();
+      this.takeTurn(roll);
     }
   };
   wasCorrectlyAnswered() {
