@@ -10,6 +10,9 @@ class Game {
     this.sportsQuestions = new Array();
     this.rockQuestions = new Array();
 
+    this.categories = ["Pop", "Science", "Sports", "Rock"];
+    this.questionIndexes = { 'Pop': 0, 'Science': 0, 'Sports': 0, 'Rock': 0 };
+
     this.inPenaltyBox = new Array(6);
     this.currentPlayer = 0;
     this.isGettingOutOfPenaltyBox = false;
@@ -20,30 +23,14 @@ class Game {
       this.sportsQuestions.push("Sports Question " + i);
       this.rockQuestions.push("Rock Question " + i);
     };
-  }
+  };
+
   didPlayerWin() {
     return !(this.purses[this.currentPlayer] == 6);
   };
+
   currentCategory() {
-    if (this.places[this.currentPlayer] == 0)
-      return 'Pop';
-    if (this.places[this.currentPlayer] == 4)
-      return 'Pop';
-    if (this.places[this.currentPlayer] == 8)
-      return 'Pop';
-    if (this.places[this.currentPlayer] == 1)
-      return 'Science';
-    if (this.places[this.currentPlayer] == 5)
-      return 'Science';
-    if (this.places[this.currentPlayer] == 9)
-      return 'Science';
-    if (this.places[this.currentPlayer] == 2)
-      return 'Sports';
-    if (this.places[this.currentPlayer] == 6)
-      return 'Sports';
-    if (this.places[this.currentPlayer] == 10)
-      return 'Sports';
-    return 'Rock';
+    return this.categories[this.places[this.currentPlayer] % 4];
   };
 
   add(playerName) {
@@ -58,15 +45,15 @@ class Game {
     return true;
   };
 
+  incrementAndFetchQuestion(category) {
+    const question = category + " Question " + this.questionIndexes[category];
+    this.questionIndexes[category]++;
+    return question;
+  };
+
   askQuestion() {
-    if (this.currentCategory() == 'Pop')
-      console.log(this.popQuestions.shift());
-    if (this.currentCategory() == 'Science')
-      console.log(this.scienceQuestions.shift());
-    if (this.currentCategory() == 'Sports')
-      console.log(this.sportsQuestions.shift());
-    if (this.currentCategory() == 'Rock')
-      console.log(this.rockQuestions.shift());
+    const question = this.incrementAndFetchQuestion(this.currentCategory());
+    console.log(question);
   };
 
   takeTurn(roll) {
@@ -77,7 +64,8 @@ class Game {
     console.log(this.players[this.currentPlayer] + "'s new location is " + this.places[this.currentPlayer]);
     console.log("The category is " + this.currentCategory());
     this.askQuestion();
-  }
+  };
+
   roll(roll) {
     console.log(this.players[this.currentPlayer] + " is the current player");
     console.log("They have rolled a " + roll);
@@ -139,7 +127,8 @@ class Game {
       this.currentPlayer = 0;
     return true;
   };
-}
+
+};
 
 let notAWinner = false;
 
