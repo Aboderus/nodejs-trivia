@@ -18,7 +18,7 @@ class Game {
       this.popQuestions.push("Pop Question " + i);
       this.scienceQuestions.push("Science Question " + i);
       this.sportsQuestions.push("Sports Question " + i);
-      this.rockQuestions.push(this.createRockQuestion(i));
+      this.rockQuestions.push("Rock Question " + i);
     };
   }
   didPlayerWin() {
@@ -44,9 +44,6 @@ class Game {
     if (this.places[this.currentPlayer] == 10)
       return 'Sports';
     return 'Rock';
-  };
-  createRockQuestion(index) {
-    return "Rock Question " + index;
   };
 
   isPlayable(howManyPlayers) {
