@@ -46,10 +46,6 @@ class Game {
     return 'Rock';
   };
 
-  isPlayable(howManyPlayers) {
-    return howManyPlayers >= 2;
-  };
-
   add(playerName) {
     this.players.push(playerName);
     const playerIndex = this.players.length - 1;
@@ -72,6 +68,7 @@ class Game {
     if (this.currentCategory() == 'Rock')
       console.log(this.rockQuestions.shift());
   };
+
   takeTurn(roll) {
     this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
     if (this.places[this.currentPlayer] > 11) {
@@ -99,6 +96,7 @@ class Game {
       this.takeTurn(roll);
     }
   };
+
   wasCorrectlyAnswered() {
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (this.isGettingOutOfPenaltyBox) {
@@ -131,6 +129,7 @@ class Game {
       return winner;
     }
   };
+
   wrongAnswer() {
     console.log('Question was incorrectly answered');
     console.log(this.players[this.currentPlayer] + " was sent to the penalty box");
