@@ -49,18 +49,19 @@ class Game {
   isPlayable(howManyPlayers) {
     return howManyPlayers >= 2;
   };
+
   add(playerName) {
     this.players.push(playerName);
-    this.places[this.howManyPlayers() - 1] = 0;
-    this.purses[this.howManyPlayers() - 1] = 0;
-    this.inPenaltyBox[this.howManyPlayers() - 1] = false;
+    const playerIndex = this.players.length - 1;
+
+    this.places[playerIndex] = 0;
+    this.purses[playerIndex] = 0;
+    this.inPenaltyBox[playerIndex] = false;
     console.log(playerName + " was added");
     console.log("They are player number " + this.players.length);
     return true;
   };
-  howManyPlayers() {
-    return this.players.length;
-  };
+
   askQuestion() {
     if (this.currentCategory() == 'Pop')
       console.log(this.popQuestions.shift());
